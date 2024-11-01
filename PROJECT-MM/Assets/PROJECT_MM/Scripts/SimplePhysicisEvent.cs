@@ -6,6 +6,8 @@ public class SimplePhysicisEvent : MonoBehaviour
 {
     [SerializeField]
     private GameObject cubePrefab;
+    public GameObject field;
+
 
     private void OnCollisionEnter(Collision collision) 
     {
@@ -23,15 +25,19 @@ public class SimplePhysicisEvent : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) 
     {
-        Debug.Log("Trigger Enter : "+ other.gameObject.name);
 
         if (other.gameObject.name == "Capsule")
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Instantiate(cubePrefab);
-            }
-                Destroy(cubePrefab, 10f);
+            Debug.Log("Trigger Enter : "+ other.gameObject.name);
+            cubePrefab.SetActive(true);
+            
+            field.GetComponent<CreateCube>().InstantiateCube();
+            // Vector3 position = new Vector3(0f, 9f, 5f);
+            // for (int i = 0; i < 10; i++)
+            // {
+            //     // Instantiate(Cube, position, Quaternion.identity);
+            //     Instantiate(Cube, field.transform, true);
+            // }
             
         }
     }

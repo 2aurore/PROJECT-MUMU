@@ -67,6 +67,7 @@
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleScriptCycle.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleMovement.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimplePhysicisEvent.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\CreateCube.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
