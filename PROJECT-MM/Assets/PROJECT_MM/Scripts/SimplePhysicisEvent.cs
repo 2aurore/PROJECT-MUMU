@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SimplePhysicisEvent : MonoBehaviour
@@ -29,9 +27,8 @@ public class SimplePhysicisEvent : MonoBehaviour
         if (other.gameObject.name == "Capsule")
         {
             Debug.Log("Trigger Enter : "+ other.gameObject.name);
-            cubePrefab.SetActive(true);
             
-            field.GetComponent<CreateCube>().InstantiateCube();
+            InvokeRepeating("InInstantiateCube", 0f, 0.2f);
             // Vector3 position = new Vector3(0f, 9f, 5f);
             // for (int i = 0; i < 10; i++)
             // {
@@ -42,15 +39,21 @@ public class SimplePhysicisEvent : MonoBehaviour
         }
     }
 
+    private void InInstantiateCube()
+    {
+        field.GetComponent<CreateCube>().InstantiateCube();
+    }
+
     private void OnTriggerStay(Collider other) 
     {
         Debug.Log("Trigger Stay : "+ other.gameObject.name);
-
-
     }
     private void OnTriggerExit(Collider other) 
     {
         Debug.Log("Trigger Exit : "+ other.gameObject.name);
-
+        if (other.gameObject.name == "Capsule")
+        {
+            CancelInvoke("InInstantiateCube");
+        }
     }
 }
