@@ -27,20 +27,15 @@ public class SimplePhysicisEvent : MonoBehaviour
         if (other.gameObject.name == "Capsule")
         {
             Debug.Log("Trigger Enter : "+ other.gameObject.name);
-            
+            // Sphere에 들어갔을 때 0.2초마다 큐브 생성
             InvokeRepeating("InInstantiateCube", 0f, 0.2f);
-            // Vector3 position = new Vector3(0f, 9f, 5f);
-            // for (int i = 0; i < 10; i++)
-            // {
-            //     // Instantiate(Cube, position, Quaternion.identity);
-            //     Instantiate(Cube, field.transform, true);
-            // }
             
         }
     }
 
     private void InInstantiateCube()
     {
+        // 큐브 생성 로직
         field.GetComponent<CreateCube>().InstantiateCube();
     }
 
@@ -50,9 +45,10 @@ public class SimplePhysicisEvent : MonoBehaviour
     }
     private void OnTriggerExit(Collider other) 
     {
-        Debug.Log("Trigger Exit : "+ other.gameObject.name);
         if (other.gameObject.name == "Capsule")
         {
+            Debug.Log("Trigger Exit : "+ other.gameObject.name);
+            // Sphere에서 나왔을 때 큐브 생성 로직 해제
             CancelInvoke("InInstantiateCube");
         }
     }
