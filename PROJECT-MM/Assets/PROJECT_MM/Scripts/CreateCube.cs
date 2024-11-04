@@ -13,7 +13,11 @@ public class CreateCube : MonoBehaviour
         // 큐브가 생성될 위치를 현재 오브젝트의 position으로 설정
         cube.transform.position = transform.position;
         // 생성된 큐브를 3초 뒤에 파괴
-        Invoke("DestroyCube", 2f);
+
+
+        Destroy(cube, 3f);
+
+        //Invoke("DestroyCube", 2f);
     }
 
     private void DestroyCube()
