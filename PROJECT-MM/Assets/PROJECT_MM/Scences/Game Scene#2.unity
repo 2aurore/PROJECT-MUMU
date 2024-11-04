@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 1036792279300642862, guid: 99b46b7fbfa4be947bb0382d71e7f90a, type: 3}
   field: {fileID: 642398300}
-  spanDelay: 5
+  spanDelay: 3
 --- !u!1 &642398300
 GameObject:
   m_ObjectHideFlags: 0
