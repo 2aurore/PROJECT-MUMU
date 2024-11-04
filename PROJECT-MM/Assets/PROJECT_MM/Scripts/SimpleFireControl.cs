@@ -15,7 +15,7 @@ public class SimpleFireControl : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            // Time.time : °ÔÀÓ ½ÃÀÛ ÈÄ °æ°úµÈ ½Ã°£
+            // Time.time : ê²Œìž„ì´ ì‹œìž‘í•œ ì´í›„ ê²½ê³¼ëœ ì‹œê°„ 
             if (Time.time > lastFireTime + fireRate)
             {
                 lastFireTime = Time.time;

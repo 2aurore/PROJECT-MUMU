@@ -36,9 +36,11 @@ public class SimpleBackRoom : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            // coroutine은 GameObject가 파괴되면 함께 사라짐.
             currentCoroutine = SpawnFallingCubeCoroutine();
             StartCoroutine(currentCoroutine);
             
+            // Invoke는 실행 후 GameObject가 파괴되어도 지정된 delay 시간 이후에 로직을 수행함.
             Invoke(nameof(SpawnFallingCubeInvoke), 3f);
         }
     }

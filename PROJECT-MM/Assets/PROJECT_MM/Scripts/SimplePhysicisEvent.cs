@@ -42,21 +42,21 @@ public class SimplePhysicisEvent : MonoBehaviour
         field.GetComponent<CreateCube>().InstantiateCube();
     }
 
-    //private void OnTriggerStay(Collider other) 
-    //{
-    //    if (other.gameObject.name == "Capsule")
-    //    {
-    //        Debug.Log("Trigger Stay : "+ other.gameObject.name);
-    //        // Sphere에 stay중일 때  큐브 생성
-    //        // Debug.Log($"lastSpanTime {lastSpanTime} ::: spanDelay {spanDelay}");
-    //        if (Time.time - lastSpanTime > spanDelay)
-    //        {
-    //            field.GetComponent<CreateCube>().InstantiateCube();
-    //            lastSpanTime = Time.time;
-    //        }
-            
-    //    }
-    //}
+    private void OnTriggerStay(Collider other) 
+    {
+        if (other.gameObject.name == "Capsule")
+        {
+            Debug.Log("Trigger Stay : "+ other.gameObject.name);
+            // Sphere에 stay중일 때  큐브 생성
+            // Debug.Log($"lastSpanTime {lastSpanTime} ::: spanDelay {spanDelay}");
+            if (Time.time - lastSpanTime > spanDelay)
+            {
+                field.GetComponent<CreateCube>().InstantiateCube();
+                lastSpanTime = Time.time;
+            }
+                
+        }
+    }
 
     private void OnTriggerExit(Collider other) 
     {

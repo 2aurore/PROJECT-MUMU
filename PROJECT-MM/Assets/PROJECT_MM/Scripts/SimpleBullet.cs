@@ -12,7 +12,7 @@ public class SimpleBullet : MonoBehaviour
         Rigidbody rigid = GetComponent<Rigidbody>();
         rigid.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
 
-        // StartÀÌÈÄ, 5ÃÊ µÚ¿¡ ÀÚ±âÀÚ½Å GameObject¸¦ ÆÄ±«ÇÏ´Â ¸í·ÉÀ» ¹Ì¸® »õ°Ü³õÀ½.
+        // Start ì´í›„, 5ì´ˆ ë’¤ì— GameObjectë¥¼ íŒŒê´´í•˜ëŠ” ë¡œì§ì„ ë¯¸ë¦¬ ì‹¬ì–´ë‘ .
         Destroy(gameObject, lifeTime);
     }
 
