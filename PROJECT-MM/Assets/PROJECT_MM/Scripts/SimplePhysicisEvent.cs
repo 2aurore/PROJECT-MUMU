@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SimplePhysicisEvent : MonoBehaviour
@@ -5,6 +6,8 @@ public class SimplePhysicisEvent : MonoBehaviour
     [SerializeField]
     private GameObject cubePrefab;
     public GameObject field;
+    public float spanDelay;
+    private float lastSpanTime;
 
 
     private void OnCollisionEnter(Collision collision) 
@@ -41,7 +44,18 @@ public class SimplePhysicisEvent : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
-        Debug.Log("Trigger Stay : "+ other.gameObject.name);
+        if (other.gameObject.name == "Capsule")
+        {
+            Debug.Log("Trigger Stay : "+ other.gameObject.name);
+            // Sphere에 stay중일 때  큐브 생성
+            // Debug.Log($"lastSpanTime {lastSpanTime} ::: spanDelay {spanDelay}");
+            if (Time.time - lastSpanTime > spanDelay)
+            {
+                field.GetComponent<CreateCube>().InstantiateCube();
+                lastSpanTime = Time.time;
+            }
+            
+        }
     }
     private void OnTriggerExit(Collider other) 
     {
