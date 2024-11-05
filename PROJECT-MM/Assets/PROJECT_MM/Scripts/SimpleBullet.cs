@@ -13,7 +13,7 @@ public class SimpleBullet : MonoBehaviour
         rigid.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
 
         // Start 이후, 5초 뒤에 GameObject를 파괴하는 로직을 미리 심어둠.
-        Destroy(gameObject, lifeTime);
+        // Destroy(gameObject, lifeTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,6 +21,6 @@ public class SimpleBullet : MonoBehaviour
         IDamage damageInterface = collision.transform.GetComponent<IDamage>();
         damageInterface?.ApplyDamage(10f);
 
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }
