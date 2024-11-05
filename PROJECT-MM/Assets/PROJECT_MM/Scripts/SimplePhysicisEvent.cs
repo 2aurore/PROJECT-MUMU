@@ -27,13 +27,13 @@ public class SimplePhysicisEvent : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
 
-        if (other.gameObject.name == "Capsule")
-        {
-            Debug.Log("Trigger Enter : "+ other.gameObject.name);
-            // Sphere에 들어갔을 때 0.2초마다 큐브 생성
-            InvokeRepeating("InInstantiateCube", 0f, 0.2f);
+        // if (other.gameObject.name == "Capsule")
+        // {
+        //     Debug.Log("Trigger Enter : "+ other.gameObject.name);
+        //     // Sphere에 들어갔을 때 0.2초마다 큐브 생성
+        //     InvokeRepeating("InInstantiateCube", 0f, 0.2f);
             
-        }
+        // }
     }
 
     private void InInstantiateCube()
@@ -60,11 +60,11 @@ public class SimplePhysicisEvent : MonoBehaviour
 
     private void OnTriggerExit(Collider other) 
     {
-        if (other.gameObject.name == "Capsule")
-        {
-            Debug.Log("Trigger Exit : "+ other.gameObject.name);
-            // Sphere에서 나왔을 때 큐브 생성 로직 해제
-            CancelInvoke("InInstantiateCube");
-        }
+        // if (other.gameObject.name == "Capsule")
+        // {
+        //     Debug.Log("Trigger Exit : "+ other.gameObject.name);
+        //     // Sphere에서 나왔을 때 큐브 생성 로직 해제
+        //     CancelInvoke("InInstantiateCube");
+        // }
     }
 }
