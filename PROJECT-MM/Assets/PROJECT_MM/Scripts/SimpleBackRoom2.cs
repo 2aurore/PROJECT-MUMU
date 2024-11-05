@@ -17,7 +17,19 @@ public class SimpleBackRoom2 : MonoBehaviour
 
             if (inputBullet >= bulletCount) 
             {
-                gameObject.SetActive(false);
+                // 1. backroom 전체를 비활성화
+                // gameObject.SetActive(false);
+                
+                // 2. backroom 전체를 파괴
+                // Destroy(gameObject);
+
+                // 3. backroom 하위의 wall1~3 만 파괴
+                GameObject backroomVisual = gameObject.transform.GetChild(0).gameObject;
+                for (int i = 0; i < backroomVisual.transform.childCount - 1; i++)
+                {
+                    Destroy(backroomVisual.transform.GetChild(0).gameObject);
+                }
+                
             }
         }
     }
