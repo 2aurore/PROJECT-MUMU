@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 365158262}
   - component: {fileID: 365158261}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 976481447}
   - component: {fileID: 976481446}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 1068387665}
   - component: {fileID: 1068387664}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Wall4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 1416586754}
   - component: {fileID: 1416586756}
   - component: {fileID: 1416586755}
+  - component: {fileID: 1416586757}
   m_Layer: 0
   m_Name: Backroom
   m_TagString: Untagged
@@ -1021,6 +1022,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1416586757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416586753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb19d1e9c5178b24bb4191171f560528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backroomRigidbody: {fileID: 1416586756}
+  inputBullet: 0
+  bulletCount: 100
 --- !u!1 &1447954016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1050,7 @@ GameObject:
   - component: {fileID: 1447954019}
   - component: {fileID: 1447954018}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Wall3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
