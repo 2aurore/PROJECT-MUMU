@@ -71,10 +71,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-PROJECT-MM/[Ll]ibrary/
-PROJECT-MM/[Tt]emp/
-PROJECT-MM/[Oo]bj/
-PROJECT-MM/[Bb]uild/
-PROJECT-MM/[Bb]uilds/
-PROJECT-MM/[Ll]ogs/
-PROJECT-MM/[Uu]ser[Ss]ettings
+/PROJECT-MM/[Ll]ibrary/
+/PROJECT-MM/[Tt]emp/
+/PROJECT-MM/[Oo]bj/
+/PROJECT-MM/[Bb]uild/
+/PROJECT-MM/[Bb]uilds/
+/PROJECT-MM/[Ll]ogs/
+/PROJECT-MM/[Uu]ser[Ss]ettings
