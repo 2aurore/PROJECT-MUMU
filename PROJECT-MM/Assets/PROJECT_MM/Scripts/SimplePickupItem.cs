@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class SimplePickupItem : MonoBehaviour, IPickup
 {
     private GameObject nearObject;
+    public GameObject[] items;
     
     private void OnTriggerStay(Collider other) 
     {
@@ -32,6 +34,9 @@ public class SimplePickupItem : MonoBehaviour, IPickup
             Debug.Log("test");
             if (nearObject.tag == "Item")
             {
+                Array.Resize(ref items, items.Length + 1);
+                items[items.GetUpperBound(0)] = nearObject;
+                
                 Destroy(nearObject);
             }
         }
