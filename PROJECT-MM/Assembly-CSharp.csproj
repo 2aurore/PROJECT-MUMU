@@ -71,6 +71,7 @@
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleMovement.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleSandbackSphere.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleAngrySphere.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\Charactor\CharactorController.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimplePhysicisEvent.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleBackRoom.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimplePickupItem.cs" />
@@ -80,6 +81,19 @@
     <Compile Include="Assets\PROJECT_MM\Scripts\Interface\IDamage.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\Common\InputSystem.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleBackRoom2.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_akarami_blend.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_hada.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku_ds.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_eyelash_blend.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_hada_blend.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_eye.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\Stage\Shader\AlphaMask.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
+    <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_eye_blend.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
