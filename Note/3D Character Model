@@ -1,0 +1,24 @@
+* Unity Chan 활용
+
+  대다수의 3D 모델링 파일은 확장자가 *.fbx
+  
+  Model > Scale Factor 모델의 전체 비율 = 기본 0.01(1cm)
+  Ric > Animation type : 무기, 날개 등이 붙은 옵션 = Generic
+                       : 사람과 동일한 형태 = Humanoid
+
+
+  Animator = 상태 기반으로 애니메이션 재생
+
+* 3D Character Model 구조
+  => 3D 캐릭터 모델의 가장 중심점은 발바닥이다!
+    Avatar Configuration > Pivot / Local 로 중심점 확인
+
+    => 3D 캐릭터 뼈대의 구조
+     => Hips [엉덩이]
+      => Left,Right Leg[다리]
+      => Spine[척추]
+       => Spine1,2,3
+        => Left,Right Shoulder [어깨]
+        => Neck [목]
+         => Head [머리]
+   => 의상 뼈대/머리카락 뼈대/소매 옷...등등 => 2차 리깅 데이터 뼈대들
