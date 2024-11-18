@@ -5,40 +5,49 @@ using UnityEngine;
 
 public class SimplePickupItem : MonoBehaviour, IPickup
 {
-    private GameObject nearObject;
-    public GameObject[] items;
-    
-    private void OnTriggerStay(Collider other) 
+    // private GameObject nearObject;
+    // public GameObject[] items;
+
+    public string Name => itemName;
+
+    public string itemName;
+
+    public void Pickup()
     {
-        
-        if (other.tag == "Item")
-        {
-            nearObject = other.gameObject;
-        }
+        Destroy(gameObject);
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.tag == "Item")
-        {
-            nearObject = null;
-        }
-     }
+    //    private void OnTriggerStay(Collider other) 
+    //     {
 
-     private void Update() {
-        PickupItem();
-     }
+    //         if (other.tag == "Item")
+    //         {
+    //             nearObject = other.gameObject;
+    //         }
+    //     }
 
-    public void PickupItem()
-    {
-        if (Input.GetKey(KeyCode.K) && nearObject != null) {
-            Debug.Log("test");
-            if (nearObject.tag == "Item")
-            {
-                Array.Resize(ref items, items.Length + 1);
-                items[items.GetUpperBound(0)] = nearObject;
-                
-                Destroy(nearObject);
-            }
-        }
-    }
+    //     private void OnTriggerExit(Collider other) {
+    //         if (other.tag == "Item")
+    //         {
+    //             nearObject = null;
+    //         }
+    //      }
+
+    //      private void Update() {
+    //         PickupItem();
+    //      }
+
+    //     public void PickupItem()
+    //     {
+    //         if (Input.GetKey(KeyCode.K) && nearObject != null) {
+    //             Debug.Log("test");
+    //             if (nearObject.tag == "Item")
+    //             {
+    //                 Array.Resize(ref items, items.Length + 1);
+    //                 items[items.GetUpperBound(0)] = nearObject;
+
+    //                 Destroy(nearObject);
+    //             }
+    //         }
+    //     }
 }

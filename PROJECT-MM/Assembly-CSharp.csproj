@@ -64,7 +64,9 @@
     <Analyzer Include="C:\Program Files\Unity 2022.3.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PROJECT_MM\Scripts\SimplePickupItem_Trap.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleBullet.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\SimplePickupSensor.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleScriptCycle.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleMovement.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleSandbackSphere.cs" />
