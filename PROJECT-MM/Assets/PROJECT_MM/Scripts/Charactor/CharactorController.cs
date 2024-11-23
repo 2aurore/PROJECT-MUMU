@@ -8,6 +8,7 @@ public class CharactorController : MonoBehaviour
     public Animator animator;
     public bool isRunning = false;
     public bool isCrouching = false;
+    public bool isPosing = false;
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -22,8 +23,14 @@ public class CharactorController : MonoBehaviour
         isRunning = Input.GetKey(KeyCode.LeftShift);
 
         // left control 키가 눌렸을때 상태를 전환
-        if (Input.GetKeyDown(KeyCode.LeftControl)) {
+        if (Input.GetKeyDown(KeyCode.LeftControl)) 
+        {
             isCrouching = !isCrouching;
+        }
+        // T 키가 눌렸을때 상태를 전환
+        if (Input.GetKeyDown(KeyCode.T)) 
+        {
+            isPosing = !isPosing;
         }
         // 캐릭터가 달리는 중일 때 속도를 높이게 하고, 자세를 숙인 상태에서 이동속도 절반으로 줄임
         float dynamicMoveSpeed = isRunning ? moveSpeed * 2 : isCrouching ? moveSpeed / 2 : moveSpeed;
@@ -34,9 +41,15 @@ public class CharactorController : MonoBehaviour
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
         animator.SetBool("Crouching", isCrouching);
+        animator.SetBool("Posing", isPosing);
         
         Vector3 movement = new Vector3(horizontal, 0f, vertical);
         transform.Translate(movement * dynamicMoveSpeed * Time.deltaTime, Space.Self);
-        transform.Rotate(Vector3.up * mouseX);
+        
+        // 캐릭터가 포즈 중일 때는 마우스 위치에 따라 회전하지 않도록 함
+        if (!isPosing) 
+        {
+            transform.Rotate(Vector3.up * mouseX);
+        }
     }
 }
