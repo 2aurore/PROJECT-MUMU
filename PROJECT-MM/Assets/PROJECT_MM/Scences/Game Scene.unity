@@ -3122,6 +3122,7 @@ MonoBehaviour:
   moveSpeed: 2
   animator: {fileID: 0}
   isRunning: 0
+  isCrouching: 0
 --- !u!1 &1440764270
 GameObject:
   m_ObjectHideFlags: 0
@@ -4179,6 +4180,7 @@ SceneRoots:
   - {fileID: 897582582}
   - {fileID: 846589717}
   - {fileID: 825300259}
+  - {fileID: 1304747621}
   - {fileID: 1981267111}
   - {fileID: 1199463846}
   - {fileID: 1043360656}
@@ -4201,4 +4203,3 @@ SceneRoots:
   - {fileID: 1231413336}
   - {fileID: 506156634}
   - {fileID: 2050728706}
-  - {fileID: 1304747621}
