@@ -19,6 +19,9 @@ public class CharactorController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         isRunning = Input.GetKey(KeyCode.LeftShift);
+        isStanding = Input.GetKey(KeyCode.LeftControl);
+        // 캐릭터가 달리는 중일 때 속도를 높이게 함
+        float dynamicMoveSpeed = isRunning ? moveSpeed * 2 : moveSpeed;
 
         Vector2 input = new Vector2(horizontal, vertical);
 
@@ -27,7 +30,7 @@ public class CharactorController : MonoBehaviour
         animator.SetFloat("Vertical", vertical);
         
         Vector3 movement = new Vector3(horizontal, 0f, vertical);
-        transform.Translate(movement * moveSpeed * Time.deltaTime, Space.Self);
+        transform.Translate(movement * dynamicMoveSpeed * Time.deltaTime, Space.Self);
         transform.Rotate(Vector3.up * mouseX);
     }
 }
