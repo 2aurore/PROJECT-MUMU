@@ -1,0 +1,28 @@
+[UGUI : Unity Graphuc User Interface]
+
+=> 2D UI / 3D UI
+=> Canvas (:캔버스)
+  => UI Widget (= Image, Text, Scroll, Slider, Grid...)
+
+  => Rect Transform 
+    -> Transform 클래스를 상속받은 자식 클래스
+    -> Transform과 동일한 ㅡ기능을 수행하지만 추가적인 변수와 기능이 존재함
+    -> Width / Height
+    -> Anchor(:앵커) UI가 어디에 앵커 지점을 설치하고, UI가 배치 되기 위한 기준점 설정[:상대적인]
+    -> Pivot -> UI의 기준점[:자체적인]
+
+  => Canvas
+    => Render Mode -
+    => Screen Space - Overlay
+    => Screen Space - Camera
+    => World
+
+
+  => Canvas Scaler
+  => Graphic Raycaster
+
+=> GameObject -> Transform [위치/회전/크기]
+
+
+  => Event System 
+    = UI 클릭, 마우스 스크롤 등의 Input 이벤트를 받아서 현재 필드 UI에 이벤트를 전달해주는 시스템
