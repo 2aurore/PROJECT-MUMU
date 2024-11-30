@@ -7,6 +7,7 @@ public class CharactorBase : MonoBehaviour, IDamage
     public bool IsRunning { get; set; }
     public bool IsCrouching { get; set; }
     public bool IsPosing { get; set; }
+    public bool IsAttack { get; set; }
 
     private void OnDrawGizmos() {
       Gizmos.color = Color.red;
@@ -15,9 +16,6 @@ public class CharactorBase : MonoBehaviour, IDamage
   
     public float moveSpeed = 2f;
     public Animator animator;
-    // public bool isRunning = false;
-    // public bool isCrouching = false;
-    // public bool isPosing = false;
 
     public float attackRange = 1f;
     public float attackRadius = 1f;
@@ -44,6 +42,8 @@ public class CharactorBase : MonoBehaviour, IDamage
 
         IngameUI.Instance.SetHP(currentHP, maxHP);
         IngameUI.Instance.SetSP(currentSP, maxSP);
+
+        IsAttack = false;
     }
     
     private void Update() {
@@ -113,6 +113,12 @@ public class CharactorBase : MonoBehaviour, IDamage
           damageInterface.ApplyDamage(10f);
         }
       }
+    }
+
+    /// <summary> 이 메서드는 애니메이션 이벤트로 호출된다. </summary>
+    public void AttackEnd()
+    {
+      IsAttack = false;
     }
 
     public void ApplyDamage(float damage)

@@ -32,13 +32,16 @@ public class CharactorController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
+            linkedCharactor.IsAttack = true;
             linkedCharactor.Attack();
         }
 
-
-        Vector2 input = new Vector2(horizontal, vertical);
-        linkedCharactor.Move(input);
-        linkedCharactor.Rotate(mouseX);
+        if (!linkedCharactor.IsAttack)
+        {
+            Vector2 input = new Vector2(horizontal, vertical);
+            linkedCharactor.Move(input);
+            linkedCharactor.Rotate(mouseX);
+        }
 
         
     }
