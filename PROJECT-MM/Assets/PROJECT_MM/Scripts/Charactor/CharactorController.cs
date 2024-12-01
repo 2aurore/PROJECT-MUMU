@@ -30,10 +30,15 @@ public class CharactorController : MonoBehaviour
         {
             linkedCharactor.IsPosing = !linkedCharactor.IsPosing;
         }
-        if (Input.GetMouseButtonDown(0))
+        // 마우스 좌클릭 시 공격 모션 > 포즈 중이 아닐때만 실행
+        if (Input.GetMouseButtonDown(0) && !linkedCharactor.IsPosing)
         {
-            linkedCharactor.IsAttack = true;
-            linkedCharactor.Attack();
+            // 이미 공격 모션 중일 때 새롭게 공격모션을 취할 수 없도록 적용
+            if (!linkedCharactor.IsAttack)
+            {
+                linkedCharactor.IsAttack = true;
+                linkedCharactor.Attack();
+            }
         }
 
         if (!linkedCharactor.IsAttack)
