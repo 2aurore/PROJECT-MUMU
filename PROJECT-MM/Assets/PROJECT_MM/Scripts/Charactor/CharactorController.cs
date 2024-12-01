@@ -37,6 +37,7 @@ public class CharactorController : MonoBehaviour
             if (!linkedCharactor.IsAttack)
             {
                 linkedCharactor.IsAttack = true;
+                linkedCharactor.AttackCombo += 1f;
                 linkedCharactor.Attack();
             }
         }

@@ -8,6 +8,7 @@ public class CharactorBase : MonoBehaviour, IDamage
     public bool IsCrouching { get; set; }
     public bool IsPosing { get; set; }
     public bool IsAttack { get; set; }
+    public float AttackCombo { get; set; }
 
     private void OnDrawGizmos() {
       Gizmos.color = Color.red;
@@ -44,6 +45,7 @@ public class CharactorBase : MonoBehaviour, IDamage
         IngameUI.Instance.SetSP(currentSP, maxSP);
 
         IsAttack = false;
+        AttackCombo = 0f;
     }
     
     private void Update() {
@@ -65,8 +67,7 @@ public class CharactorBase : MonoBehaviour, IDamage
         animator.SetFloat("Vertical", animationParameterVertical);
         animator.SetBool("Crouching", IsCrouching);
         animator.SetBool("Posing", IsPosing);
-        
-        
+        animator.SetFloat("Attack Combo", AttackCombo);
         
     }
 
@@ -119,6 +120,11 @@ public class CharactorBase : MonoBehaviour, IDamage
     public void AttackEnd()
     {
       IsAttack = false;
+
+      if (AttackCombo == 3)
+      {
+        AttackCombo = 0f;
+      }
     }
 
     public void ApplyDamage(float damage)
