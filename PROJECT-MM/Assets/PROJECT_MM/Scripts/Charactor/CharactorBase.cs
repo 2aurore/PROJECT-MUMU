@@ -10,9 +10,14 @@ public class CharactorBase : MonoBehaviour, IDamage
     public bool IsAttack { get; set; }
     public float AttackCombo { get; set; }
 
+    // attack 범위를 볼 수 있게 해주는 기즈모 추가
     private void OnDrawGizmos() {
       Gizmos.color = Color.red;
       Gizmos.DrawWireSphere(transform.position + (transform.forward * attackRange), attackRadius);
+
+      Gizmos.color = Color.blue;
+      Vector3 secondGizmoPosition = transform.position + (transform.forward * attackRange) + (Vector3.up * attackOffset);
+      Gizmos.DrawWireSphere(secondGizmoPosition, attackRadius);
     }
   
     public float moveSpeed = 2f;
@@ -20,6 +25,7 @@ public class CharactorBase : MonoBehaviour, IDamage
 
     public float attackRange = 1f;
     public float attackRadius = 1f;
+    public float attackOffset = 1f;
 
 
     public float currentHP;
@@ -105,6 +111,21 @@ public class CharactorBase : MonoBehaviour, IDamage
     public void LogicalAttack() 
     {
       Vector3 calculatePivotPosition = transform.position + (transform.forward * attackRange);
+      Collider[] overlapped =  Physics.OverlapSphere(calculatePivotPosition, attackRadius);
+      for (int i = 0; i < overlapped.Length; i++) 
+      {
+        Debug.Log($"Overlapped: {overlapped[i].name}");
+
+        if (overlapped[i].transform.root.TryGetComponent(out IDamage damageInterface)) 
+        {
+          damageInterface.ApplyDamage(10f);
+        }
+      }
+    }
+    /// <summary> 이 메서드는 애니메이션 이벤트로 호출된다. </summary>
+    public void LogicalAttack2() 
+    {
+      Vector3 calculatePivotPosition = transform.position + (transform.forward * attackRange) + (Vector3.up * attackOffset);
       Collider[] overlapped =  Physics.OverlapSphere(calculatePivotPosition, attackRadius);
       for (int i = 0; i < overlapped.Length; i++) 
       {
