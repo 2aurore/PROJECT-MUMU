@@ -7,22 +7,36 @@
   => Rect Transform 
     -> Transform 클래스를 상속받은 자식 클래스
     -> Transform과 동일한 ㅡ기능을 수행하지만 추가적인 변수와 기능이 존재함
-    -> Width / Height
+    -> Width / Height [이미지의 크기]
     -> Anchor(:앵커) UI가 어디에 앵커 지점을 설치하고, UI가 배치 되기 위한 기준점 설정[:상대적인]
     -> Pivot -> UI의 기준점[:자체적인]
 
   => Canvas
-    => Render Mode -
-    => Screen Space - Overlay
-    => Screen Space - Camera
-    => World
+     => Render Mode : UI Canvas가 어떻게 화면에 그려질 것인지에 대한 렌더링 모드 값
+      => Screen Space - Overlay : 일반적인 평평한 UI 를 그릴 때 쓰는 모드 [2D UI]
+      => Screen Space - Camera  : 원근감을 적용시키고 싶은 2D UI에 적용할 때 쓰는 모드 [2D UI]
+      => World                  : 실제 3D 월드 상에 배치하고 싶을 때 쓰는 모드 [3D UI]
 
+      => Pixel Perfect : 
+      => Sort Order : 포토샵의 레이어와 유사함 => Sort Order 값이 높을 수록 마지막에 그려진다. (css의 z-index?)
+      => Target Display : 해당 캔버스가 어떤 모니터에 그려지게 특정지을거야~ 라는 속성을 지정하고싶을때 사용한다. 여러 모니터를 지원하는 게임에서 사용
 
   => Canvas Scaler
-  => Graphic Raycaster
+     => UI Scale Mode  
+       => Constant Pixel Size     : UI 요소가 화면 크기에 관계없이 동일한 픽셀 크기로 유지됩니다.
+       => Scale width Screen Size : 화면이 커질수록 UI 요소도 커집니다. (90% 이상 이 옵션만 사용하게 된다)
+       => Constant Physics Size   : 화면 크기와 해상도에 관계없이 UI 요소가 동일한 물리적인 크기
+         (:실제 물리적인 단위)로 유지됩니다. (cm, mm, 등등)
 
-=> GameObject -> Transform [위치/회전/크기]
+     => Graphic Raycaster
+       => 해당 캔버스 하위에, 버튼이라던지...클릭이라던지..드래그라던지..스크롤이라던지..가 작동되려면 필요한 녀석
+       => 만약에 캔버스 하위에 상호작용이 되는 UI Widget들이 없다면? => 필요없으므로 게임 최적화를 위해 미리 제거해두는 경우가 많다
 
+   => GameObject => Transform [위치/회전/크기]
 
-  => Event System 
-    = UI 클릭, 마우스 스크롤 등의 Input 이벤트를 받아서 현재 필드 UI에 이벤트를 전달해주는 시스템
+   => Canvas 들은...Canvas 내에 있는 Sort Order 값에 따라, 캔버스가 그려질 순서가 정해진다
+   => Canvas 내에 있는 Widget들은 => 하이어러키 순서에 따라 그려진다.
+
+    => Event System => UI에 클릭이라던지,마우스 스크롤이 일어났다던지...
+      => Input 이벤트를 받아서 현재 월드에있는 UI들한테 Input 이벤트를 전달해주는 시스템
+
