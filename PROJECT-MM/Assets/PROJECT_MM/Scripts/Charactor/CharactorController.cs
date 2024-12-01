@@ -36,8 +36,6 @@ public class CharactorController : MonoBehaviour
             // 이미 공격 모션 중일 때 새롭게 공격모션을 취할 수 없도록 적용
             if (!linkedCharactor.IsAttack)
             {
-                linkedCharactor.IsAttack = true;
-                linkedCharactor.AttackCombo += 1f;
                 linkedCharactor.Attack();
             }
         }

@@ -97,7 +97,8 @@ public class CharactorBase : MonoBehaviour, IDamage
     public void Attack()
     {
       animator.SetTrigger("Attack Trigger");
-      
+      IsAttack = true;
+      AttackCombo += 1f;
     }
 
     /// <summary> 이 메서드는 애니메이션 이벤트로 호출된다. </summary>
