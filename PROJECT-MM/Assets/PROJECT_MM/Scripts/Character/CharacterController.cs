@@ -12,6 +12,23 @@ public class CharacterController : MonoBehaviour
         linkedCharacter = GetComponent<CharacterBase>();
     }
 
+    private void Start()
+    {
+        UIManager.Show<IngameUI>(UIList.IngameUI);
+
+        MM.InputSystem.Singleton.OnEscapeInput += OnEscapeExecute;
+    }
+
+    private void OnDestroy()
+    {
+        MM.InputSystem.Singleton.OnEscapeInput -= OnEscapeExecute;
+    }
+
+    void OnEscapeExecute()
+    {
+        UIManager.Show<PausePopupUI>(UIList.PausePopupUI);
+    }
+
     private void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -22,6 +39,11 @@ public class CharacterController : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // 마우스 좌 클릭이 한번 눌러졌을 때, 발생하는 이벤트
         {
             linkedCharacter.Attack();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            linkedCharacter.RangeAttack();
         }
 
         linkedCharacter.IsRunning = Input.GetKey(KeyCode.LeftShift);

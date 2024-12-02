@@ -7,6 +7,8 @@ using UnityEngine.Windows;
 public class CharacterBase : MonoBehaviour, IDamage
 {
     public bool IsRunning { get; set; }
+    public bool IsAlive => currentHP > 0f;
+
 
     private void OnDrawGizmos()
     {
@@ -32,6 +34,19 @@ public class CharacterBase : MonoBehaviour, IDamage
     private float animationParameterHorizontal;
     private float animationParameterVertical;
 
+
+    public GameObject rangeAttackBulletOriginal;
+    public Transform rangeAttackStartPoint;
+    public float rangeAttackRequireSP = 50f;
+
+
+    public float circularAttackAngle = 90f;
+    public float circularAttackRange = 3f;
+
+
+    public float rangeAttackDistance = 5f;
+
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -48,6 +63,11 @@ public class CharacterBase : MonoBehaviour, IDamage
 
     private void Update()
     {
+        if (!IsAlive)
+        {
+            return;
+        }
+
         isValidRunning = IsRunning && currentSP > 0;
         if (isValidRunning)
         {
@@ -67,6 +87,9 @@ public class CharacterBase : MonoBehaviour, IDamage
 
     public void Move(Vector2 input)
     {
+        if (!IsAlive)
+            return;
+
         animationParameterSpeed = input.sqrMagnitude > 0f ? (isValidRunning ? 2f : 0.5f) : 0f;
         animationParameterHorizontal = input.x;
         animationParameterVertical = input.y;
@@ -77,11 +100,21 @@ public class CharacterBase : MonoBehaviour, IDamage
 
     public void Rotate(float yAxis)
     {
+        if (!IsAlive)
+        {
+            return;
+        }
+
         transform.Rotate(Vector3.up * yAxis);
     }
 
     public void Attack()
     {
+        if (!IsAlive)
+        {
+            return;
+        }
+
         animator.SetTrigger("Attack Trigger");
     }
 
@@ -99,8 +132,70 @@ public class CharacterBase : MonoBehaviour, IDamage
         }
     }
 
+    public void RangeAttack()
+    {
+        if (currentSP < rangeAttackRequireSP && !IsAlive)
+            return;
+
+        currentSP -= rangeAttackRequireSP;
+        IngameUI.Instance.SetSP(currentSP, maxSP);
+
+        animator.SetTrigger("RangeAttack Trigger");
+    }
+
+    public void LogicalRangeAttack()
+    {
+        #region 투사체로 검출 하는 방법
+        //GameObject newBullet = Instantiate(rangeAttackBulletOriginal, rangeAttackStartPoint.position, rangeAttackStartPoint.rotation);
+        //newBullet.gameObject.SetActive(true);
+        //Rigidbody bulletRigidbody = newBullet.GetComponent<Rigidbody>();
+        //bulletRigidbody.AddForce(rangeAttackStartPoint.forward * 10f, ForceMode.Impulse);
+        #endregion
+
+        #region 부채꼴 모양의 물리를 검사하는 방법
+        //Collider[] overlapped = Physics.OverlapSphere(rangeAttackStartPoint.position, circularAttackRange);
+        //for (int i = 0; i < overlapped.Length; i++)
+        //{
+        //    Vector3 detectedPosition = overlapped[i].transform.root.position;
+        //    Vector3 direction = (detectedPosition - transform.position).normalized;
+        //    float angle = Vector3.Angle(transform.forward, direction);
+        //    if (angle < circularAttackAngle * 0.5f)
+        //    {
+        //        if (overlapped[i].transform.root.TryGetComponent(out IDamage damageInterface))
+        //        {
+        //            damageInterface.ApplyDamage(10f);
+        //        }
+        //    }
+        //    Debug.DrawLine(rangeAttackStartPoint.position, detectedPosition + Vector3.up, Color.red, 1f);
+        //}
+        #endregion
+
+        #region 레이캐스트를 이용해서[레이저를 하나 쏴서] 검출하는 방법
+        //if (Physics.Raycast(rangeAttackStartPoint.position, rangeAttackStartPoint.forward, out RaycastHit hit, rangeAttackDistance))
+        //{
+        //    if (hit.collider.transform.root.TryGetComponent(out IDamage damageInterface))
+        //    {
+        //        damageInterface.ApplyDamage(10f);
+        //    }
+        //}
+
+        //Debug.DrawLine(
+        //    rangeAttackStartPoint.position, 
+        //    rangeAttackStartPoint.position + rangeAttackStartPoint.forward * rangeAttackDistance, 
+        //    Color.red, 
+        //    1f);
+        #endregion
+    }
+
     public void ApplyDamage(float damage)
     {
+        currentHP -= damage;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        IngameUI.Instance.SetHP(currentHP, maxHP);
 
+        if (currentHP <= 0f)
+        {
+            animator.SetTrigger("Dead Trigger");
+        }
     }
 }
