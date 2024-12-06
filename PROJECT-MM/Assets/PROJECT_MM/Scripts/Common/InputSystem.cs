@@ -4,11 +4,13 @@ using UnityEngine;
 
 namespace MM
 {
-    public class InputSystem : MonoBehaviour
+    public class InputSystem : SingletonBase<InputSystem>
     {
         public bool IsForceCursorVisible { get; set; }
 
         private bool isCommonCursorVisible = false;
+
+        public System.Action OnEscapeInput;
 
         private void Start()
         {
@@ -26,6 +28,11 @@ namespace MM
             else
             {
                 SetCursorVisible(isCommonCursorVisible);
+            }
+
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                OnEscapeInput?.Invoke();
             }
         }
 

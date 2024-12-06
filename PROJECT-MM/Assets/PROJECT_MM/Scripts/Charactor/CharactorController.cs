@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MM;
 using UnityEngine;
 
 public class CharactorController : MonoBehaviour
@@ -9,6 +10,21 @@ public class CharactorController : MonoBehaviour
 
     private void Awake() {
         linkedCharactor = GetComponent<CharactorBase>();
+    }
+
+    private void Start() {
+        UIManager.Show<IngameUI>(UIList.IngameUI);
+
+        MM.InputSystem.Singleton.OnEscapeInput += OnEscapeExecute;
+    }
+
+    private void OnDestroy() {
+        MM.InputSystem.Singleton.OnEscapeInput -= OnEscapeExecute;
+    }
+
+    void OnEscapeExecute()
+    {
+        UIManager.Show<PausePopupUI> (UIList.PausePopupUI);
     }
 
     private void Update() {
@@ -38,6 +54,11 @@ public class CharactorController : MonoBehaviour
             {
                 linkedCharactor.Attack();
             }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            linkedCharactor.RangeAttack();
         }
 
         if (!linkedCharactor.IsAttack)

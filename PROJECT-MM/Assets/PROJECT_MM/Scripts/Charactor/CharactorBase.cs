@@ -7,7 +7,8 @@ public class CharactorBase : MonoBehaviour, IDamage
     public bool IsRunning { get; set; }
     public bool IsCrouching { get; set; }
     public bool IsPosing { get; set; }
-    public bool IsAttack { get; set; }
+    public bool IsAttack { get; set; } 
+    public bool IsAlive => currentHP > 0f;
     public float AttackCombo { get; set; }
 
     // attack 범위를 볼 수 있게 해주는 기즈모 추가
@@ -38,12 +39,23 @@ public class CharactorBase : MonoBehaviour, IDamage
     private float animationParameterHorizontal;
     private float animationParameterVertical;
 
+    public GameObject rangeAttackBulletOriginal;
+    public Transform rangeAttackStartPoint;
+    public float rangeAttackRequireSP = 50f;
 
-    private void Awake() {
+
+    public float circularAttackAngle = 90f;
+    private float circularAttackRange = 3f;
+    
+    public float rangeAttackDistance = 5f;
+
+    private void Awake() 
+    {
         animator = GetComponent<Animator>();
     }
 
-    private void Start() {
+    private void Start()
+    {
         currentHP = maxHP;
         currentSP = maxSP;
 
@@ -54,7 +66,13 @@ public class CharactorBase : MonoBehaviour, IDamage
         AttackCombo = 0f;
     }
     
-    private void Update() {
+    private void Update() 
+    {
+      if (!IsAlive)
+        {
+          return;
+        }
+
       
         isValidRunning = IsRunning && currentSP > 0;
         if (isValidRunning) 
@@ -79,6 +97,11 @@ public class CharactorBase : MonoBehaviour, IDamage
 
     public void Move(Vector2 input) 
     {
+        if (!IsAlive)
+        {
+          return;
+        }
+
         animationParameterSpeed = input.sqrMagnitude > 0f ? IsRunning ? 3f : 0.5f : 0f;
         animationParameterHorizontal = input.x;
         animationParameterVertical = input.y;
@@ -93,6 +116,11 @@ public class CharactorBase : MonoBehaviour, IDamage
 
     public void Rotate(float yAxis) 
     {
+      if (!IsAlive)
+        {
+          return;
+        }
+
       // 캐릭터가 포즈 중일 때는 마우스 위치에 따라 회전하지 않도록 함
         if (!IsPosing) 
         {
@@ -138,12 +166,71 @@ public class CharactorBase : MonoBehaviour, IDamage
       }
     }
 
+    public void RangeAttack() 
+    {
+      if(currentSP < rangeAttackRequireSP)
+      {
+        return;
+      }
+
+      currentSP -= rangeAttackRequireSP;
+      IngameUI.Instance.SetSP(currentSP, maxSP);
+
+      animator.SetTrigger("RangeAttack Trigger");
+    }
+
+    public void LogicalRangeAttack()
+    { 
+      #region 투사체로 검증하는 방법
+      // GameObject newBullet = Instantiate(rangeAttackBulletOriginal, rangeAttackStartPoint.position , rangeAttackStartPoint.rotation);
+      // newBullet.gameObject.SetActive(true);
+
+      // Rigidbody bulletRigidbody = newBullet.GetComponent<Rigidbody>();
+      // bulletRigidbody.AddForce(rangeAttackStartPoint.forward * 10f, ForceMode.Impulse);
+      #endregion
+
+      #region 부채꼴 모양의 물리를 검사하는 방법
+        
+      // Collider[] overlapped = Physics.OverlapSphere(rangeAttackStartPoint.position, circularAttackRange);
+      // for (int i = 0; i < overlapped.Length; i++)
+      // {
+      //   Vector3 detectedPosition = overlapped[i].transform.root.position;
+      //   // 타겟 - 내 위치 
+      //   Vector3 direction = (detectedPosition - transform.position).normalized;
+
+      //   float angle = Vector3.Angle(transform.forward, direction);
+      //   if (angle < circularAttackAngle * 0.5f) 
+      //   {
+      //     if (overlapped[i].transform.root.TryGetComponent(out IDamage damageInterface))
+      //     {
+      //       damageInterface.ApplyDamage(10f);
+      //     }
+      //   }
+      //   Debug.DrawLine(rangeAttackStartPoint.position, detectedPosition + Vector3.up, Color.yellow, 1f);
+      // } 
+      #endregion
+
+      #region 레이캐스트를 이용해서 [레이저를 하나 쏴서] 검증하는 방법
+        
+      if (Physics.Raycast(rangeAttackStartPoint.position, rangeAttackStartPoint.forward, out RaycastHit hit, rangeAttackDistance)) 
+      {
+        if (hit.collider.transform.root.TryGetComponent(out IDamage damageInterface)) 
+        {
+          damageInterface.ApplyDamage(10f);
+        }
+        
+        Debug.DrawLine(rangeAttackStartPoint.position, rangeAttackStartPoint.position + rangeAttackStartPoint.forward * rangeAttackDistance, Color.yellow, 1f);
+      }
+      #endregion
+
+
+    }
     /// <summary> 이 메서드는 애니메이션 이벤트로 호출된다. </summary>
     public void AttackEnd()
     {
       IsAttack = false;
 
-      if (AttackCombo == 3)
+      if (AttackCombo >= 3)
       {
         AttackCombo = 0f;
       }
@@ -151,6 +238,13 @@ public class CharactorBase : MonoBehaviour, IDamage
 
     public void ApplyDamage(float damage)
     {
-        
+        currentHP -= damage;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        IngameUI.Instance.SetHP(currentHP, maxHP);
+
+        if (currentHP <= 0f)
+        {
+          animator.SetTrigger("Dead Trigger");
+        }
     }
 }

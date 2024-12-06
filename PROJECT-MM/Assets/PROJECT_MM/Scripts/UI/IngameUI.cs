@@ -4,26 +4,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IngameUI : MonoBehaviour
+public class IngameUI : UIBase
 {
-    public static IngameUI Instance {get; private set;} = null;
+    public static IngameUI Instance => UIManager.Singleton.GetUI<IngameUI>(UIList.IngameUI);
 
-    public void Awake() {
-        if (Instance == null) 
-        {
-            Instance = this;  
-        } 
-        else {
-            Destroy(gameObject);
-        }
-    }
+    // public void Awake() {
+    //     if (Instance == null) 
+    //     {
+    //         Instance = this;  
+    //     } 
+    //     else {
+    //         Destroy(gameObject);
+    //     }
+    // }
 
-    private void OnDestroy() {
-        if (Instance == this)
-        {
-            Instance = null;
-        }
-    }
+    // private void OnDestroy() {
+    //     if (Instance == this)
+    //     {
+    //         Instance = null;
+    //     }
+    // }
 
     public Image hpBar;
     public Image spBar;
