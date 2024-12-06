@@ -44,7 +44,11 @@ public class CharactorController : MonoBehaviour
         // T 키가 눌렸을때 상태를 전환
         if (Input.GetKeyDown(KeyCode.T)) 
         {
-            linkedCharactor.IsPosing = !linkedCharactor.IsPosing;
+            if (!linkedCharactor.IsAttack)
+            {
+                linkedCharactor.Pose();
+            }
+            // linkedCharactor.IsPosing = !linkedCharactor.IsPosing;
         }
         // 마우스 좌클릭 시 공격 모션 
         if (Input.GetMouseButtonDown(0) && !linkedCharactor.IsPosing && !linkedCharactor.IsCrouching)

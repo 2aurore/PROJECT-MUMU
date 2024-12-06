@@ -128,6 +128,12 @@ public class CharactorBase : MonoBehaviour, IDamage
         }
     }
 
+    public void Pose() 
+    {
+      animator.SetTrigger("Pose Trigger");
+      IsPosing = !IsPosing;
+    }
+
     public void Attack()
     {
       animator.SetTrigger("Attack Trigger");
