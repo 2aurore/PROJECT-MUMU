@@ -244,7 +244,16 @@ public class CharactorBase : MonoBehaviour, IDamage
 
     public void ApplyDamage(float damage)
     {
-      animator.SetTrigger("Hit Trigger");
+      if (damage < 10 )
+      {
+        animator.SetTrigger("Hit Trigger");
+      } 
+      else
+      { 
+        // 큰 데미지가 들어오는 경우 캐릭터를 넉백 시킴
+        animator.SetTrigger("Down Trigger");
+      }
+      
       currentHP -= damage;
       currentHP = Mathf.Clamp(currentHP, 0, maxHP);
       IngameUI.Instance.SetHP(currentHP, maxHP);
