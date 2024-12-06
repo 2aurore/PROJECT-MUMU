@@ -18,17 +18,18 @@ namespace MM
         }
 
         private void Update()
-        {
-            IsForceCursorVisible = Input.GetKey(KeyCode.LeftAlt);
-            if (IsForceCursorVisible)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                SetCursorVisible(isCommonCursorVisible);
-            }
+        {   
+            // 인게임 마우스 숨김 부분 
+            // IsForceCursorVisible = Input.GetKey(KeyCode.LeftAlt);
+            // if (IsForceCursorVisible)
+            // {
+            //     Cursor.lockState = CursorLockMode.None;
+            //     Cursor.visible = true;
+            // }
+            // else
+            // {
+            //     SetCursorVisible(isCommonCursorVisible);
+            // }
 
             if (Input.GetKeyUp(KeyCode.Escape))
             {
