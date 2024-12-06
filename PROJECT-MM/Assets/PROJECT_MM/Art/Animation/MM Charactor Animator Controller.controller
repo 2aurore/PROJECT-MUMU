@@ -350,7 +350,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: POSE
+  m_Name: Pose
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6273696581129463725}
@@ -804,10 +804,10 @@ AnimatorStateMachine:
     m_Position: {x: 350, y: 120, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -2311224754144722380}
-    m_Position: {x: 550, y: 180, z: 0}
+    m_Position: {x: 580, y: 220, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 8092384945185589623}
-    m_Position: {x: 300, y: 210, z: 0}
+    m_Position: {x: 350, y: 220, z: 0}
   m_AnyStateTransitions:
   - {fileID: -1346753100215931597}
   - {fileID: 3062081133337972665}
