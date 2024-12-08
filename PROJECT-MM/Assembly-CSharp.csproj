@@ -74,6 +74,7 @@
     <Compile Include="Assets\PROJECT_MM\Scripts\Common\UIManager.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimplePickupSensor.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleScriptCycle.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\UI\LogUI.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleMovement.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleSandbackSphere.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleAngrySphere.cs" />
