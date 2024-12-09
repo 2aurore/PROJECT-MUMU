@@ -162,6 +162,10 @@ public class CharactorBase : MonoBehaviour, IDamage
 
       if (overlapped[i].transform.root.TryGetComponent(out IDamage damageInterface))
       {
+        // 자기 자신에게 데미지 주지 않도록 적용
+        if (overlapped[i].transform.root.gameObject == this.gameObject)
+          continue;
+
         damageInterface.ApplyDamage(10f);
       }
     }
@@ -177,6 +181,10 @@ public class CharactorBase : MonoBehaviour, IDamage
 
       if (overlapped[i].transform.root.TryGetComponent(out IDamage damageInterface))
       {
+        // 자기 자신에게 데미지 주지 않도록 적용
+        if (overlapped[i].transform.root.gameObject == this.gameObject)
+          continue;
+
         damageInterface.ApplyDamage(10f);
       }
     }
