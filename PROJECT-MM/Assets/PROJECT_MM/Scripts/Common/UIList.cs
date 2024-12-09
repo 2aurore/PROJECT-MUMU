@@ -6,7 +6,9 @@ public enum UIList
 {
     PANEL_START,
 
+    TitleUI,
     IngameUI,
+    LoadingUI,
 
 
     PANEL_END,

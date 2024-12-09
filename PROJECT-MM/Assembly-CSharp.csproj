@@ -65,9 +65,14 @@
     <Compile Include="Assets\PROJECT_MM\Scripts\Common\UIBase.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\UI\IngameUI.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\Projectile\Projectile.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\Common\SceneBase.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\UI\PausePopupUI.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\Scenes\IngameScene.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\Character\CharacterController.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimplePickupItem_Trap.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\Common\Main.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\Scenes\TitleScene.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\UI\LoadingUI.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleBullet.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\Common\UIManager.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\SimplePickupSensor.cs" />
@@ -85,7 +90,9 @@
     <Compile Include="Assets\PROJECT_MM\Scripts\SimpleFireControl.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\Interface\IPickup.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\Interface\IDamage.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\Common\BootStrapper.cs" />
     <Compile Include="Assets\PROJECT_MM\Scripts\Common\InputSystem.cs" />
+    <Compile Include="Assets\PROJECT_MM\Scripts\UI\TitleUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />

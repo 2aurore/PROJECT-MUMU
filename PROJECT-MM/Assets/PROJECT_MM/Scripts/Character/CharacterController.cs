@@ -14,8 +14,6 @@ public class CharacterController : MonoBehaviour
 
     private void Start()
     {
-        UIManager.Show<IngameUI>(UIList.IngameUI);
-
         MM.InputSystem.Singleton.OnEscapeInput += OnEscapeExecute;
     }
 
@@ -49,5 +47,11 @@ public class CharacterController : MonoBehaviour
         linkedCharacter.IsRunning = Input.GetKey(KeyCode.LeftShift);
         linkedCharacter.Move(input);
         linkedCharacter.Rotate(mouseX);
+
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby Scene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        }
     }
 }

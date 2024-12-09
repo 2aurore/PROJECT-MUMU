@@ -34,12 +34,6 @@ public class UIManager : SingletonBase<UIManager>
 
     private const string UI_PATH = "UI/Prefabs/";
 
-    protected override void Awake()
-    {
-        base.Awake();
-        Initialize();
-    }
-
     public void Initialize()
     {
         if (panelRoot == null)

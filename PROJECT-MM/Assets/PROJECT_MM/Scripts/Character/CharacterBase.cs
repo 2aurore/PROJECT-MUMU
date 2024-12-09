@@ -125,6 +125,9 @@ public class CharacterBase : MonoBehaviour, IDamage
         Collider[] overlapped = Physics.OverlapSphere(calculatePivotPosition, attackRadius);
         for (int i = 0; i < overlapped.Length; i++)
         {
+            if (overlapped[i].transform.root.gameObject == this.gameObject)
+                continue;
+
             if (overlapped[i].transform.root.TryGetComponent(out IDamage damageInterface))
             {
                 damageInterface.ApplyDamage(10f);
@@ -189,11 +192,12 @@ public class CharacterBase : MonoBehaviour, IDamage
 
     public void ApplyDamage(float damage)
     {
+        float prevHP = currentHP;
         currentHP -= damage;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         IngameUI.Instance.SetHP(currentHP, maxHP);
 
-        if (currentHP <= 0f)
+        if (currentHP <= 0f && prevHP > 0)
         {
             animator.SetTrigger("Dead Trigger");
         }
