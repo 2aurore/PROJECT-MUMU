@@ -14,7 +14,8 @@ public class CharactorController : MonoBehaviour
 
     private void Start()
     {
-        UIManager.Show<IngameUI>(UIList.IngameUI);
+        // SceneManager에서 관리하도록 변경됨
+        // UIManager.Show<IngameUI>(UIList.IngameUI);
         UIManager.Show<LogUI>(UIList.LogUI);
 
         MM.InputSystem.Singleton.OnEscapeInput += OnEscapeExecute;
@@ -90,6 +91,11 @@ public class CharactorController : MonoBehaviour
             Vector2 input = new Vector2(horizontal, vertical);
             linkedCharactor.Move(input);
             linkedCharactor.Rotate(mouseX);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby Scene", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         }
 
     }

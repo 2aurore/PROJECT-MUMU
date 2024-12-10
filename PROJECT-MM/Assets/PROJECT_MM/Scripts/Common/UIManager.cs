@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIManager : SingletonBase<UIManager>
 {
 
-    public static T Show<T>(UIList uiName ) where T : UIBase
+    public static T Show<T>(UIList uiName) where T : UIBase
     {
         var targetUI = Singleton.GetUI<T>(uiName);
 
@@ -17,7 +17,7 @@ public class UIManager : SingletonBase<UIManager>
         targetUI.Show();
         return targetUI;
     }
-    public static T Hide<T>(UIList uiName ) where T : UIBase
+    public static T Hide<T>(UIList uiName) where T : UIBase
     {
         var targetUI = Singleton.GetUI<T>(uiName);
 
@@ -38,22 +38,23 @@ public class UIManager : SingletonBase<UIManager>
 
     private const string UI_PATH = "UI/Prefabs/";
 
-    protected override void Awake() 
-    {
-        base.Awake();
-        Initalize();    
-    }
+    // Main에서 수행함으로 주석처리
+    // protected override void Awake() 
+    // {
+    //     base.Awake();
+    //     Initalize();    
+    // }
 
 
     public void Initalize()
     {
-        if ( panelRoot == null )
+        if (panelRoot == null)
         {
             GameObject panelGo = new GameObject("Panel Root");
             panelRoot = panelGo.transform;
             panelRoot.SetParent(transform);
         }
-        if ( popupRoot == null )
+        if (popupRoot == null)
         {
             GameObject popupGo = new GameObject("Popup Root");
             popupRoot = popupGo.transform;
@@ -91,7 +92,7 @@ public class UIManager : SingletonBase<UIManager>
         }
 
         if (isReload && container[uiName])
-        {   
+        {
             Destroy(container[uiName].gameObject);
             container[uiName] = null;
         }
@@ -101,9 +102,9 @@ public class UIManager : SingletonBase<UIManager>
             string path = UI_PATH + $"UI.{uiName}";
             T result = Resources.Load<UIBase>(path) as T;
 
-            if (result) 
+            if (result)
             {
-                container[uiName] = Instantiate(result, container == panels ? panelRoot: popupRoot);
+                container[uiName] = Instantiate(result, container == panels ? panelRoot : popupRoot);
                 container[uiName].gameObject.SetActive(true);
             }
         }

@@ -7,6 +7,7 @@ public enum UIList
 {
     PANEL_START,
 
+    TitleUI,
     IngameUI,
     LogUI,
 
@@ -14,6 +15,7 @@ public enum UIList
     PANEL_END,
     POPUP_START,
     PausePopupUI,
+    LoadingUI,
 
 
     POPUP_END,
