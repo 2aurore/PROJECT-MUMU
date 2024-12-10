@@ -280,13 +280,14 @@ public class CharactorBase : MonoBehaviour, IDamage
       animator.SetTrigger("Down Trigger");
     }
 
+    float prevHP = currentHP;
     currentHP -= damage;
     currentHP = Mathf.Clamp(currentHP, 0, maxHP);
     IngameUI.Instance.SetHP(currentHP, maxHP);
 
     // 체력이 0 아래로 떨어지고 현 상태가 IsAlive 일때만 동작하도록 함
     Debug.Log("currentHP:: " + currentHP);
-    if (currentHP <= 0f)
+    if (currentHP <= 0f && prevHP > 0)
     {
       animator.SetTrigger("Dead Trigger");
       LogUI.Instance.AddLogMessage("system", "Dead");
