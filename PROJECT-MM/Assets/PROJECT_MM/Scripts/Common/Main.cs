@@ -64,7 +64,7 @@ public class Main : MonoBehaviour
     private IEnumerator ChangeScene<T>(System.Action onSceneChangeCompletedCallback = null) where T : SceneBase
     {
         UIManager.Show<LoadingUI>(UIList.LoadingUI);
-        // yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f);
 
         isSceneChangeProgress = true;
 
