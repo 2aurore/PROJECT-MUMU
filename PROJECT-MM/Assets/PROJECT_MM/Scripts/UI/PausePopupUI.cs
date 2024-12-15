@@ -18,4 +18,11 @@ public class PausePopupUI : UIBase
         Application.Quit();
         EditorApplication.isPlaying = false;    // 엔진에서 게임을 종료 처리하도록 함
     }
+
+    // 타이틀 UI로 돌아가기 버튼
+    public void OnClickBackButton()
+    {
+        UIManager.Hide<PausePopupUI>(UIList.PausePopupUI);
+        Main.Instance.ChangeScene(SceneType.Title);
+    }
 }
