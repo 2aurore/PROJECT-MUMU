@@ -8,6 +8,7 @@ public class PausePopupUI : UIBase
     // 게임 일시정지 버튼 메소드
     public void OnClickResumeButton()
     {
+        Time.timeScale = 1f;
         UIManager.Hide<PausePopupUI>(UIList.PausePopupUI);
     }
 

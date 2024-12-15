@@ -18,6 +18,7 @@ public class IngameScence : SceneBase
         }
 
         UIManager.Show<IngameUI>(UIList.IngameUI);
+        MM.InputSystem.Singleton.OnEscapeInput += OnEscapeExecute;
 
     }
 
@@ -25,6 +26,14 @@ public class IngameScence : SceneBase
     {
         yield return null;
 
+        MM.InputSystem.Singleton.OnEscapeInput -= OnEscapeExecute;
         UIManager.Hide<IngameUI>(UIList.IngameUI);
     }
+
+    void OnEscapeExecute()
+    {
+        Time.timeScale = 0f;
+        UIManager.Show<PausePopupUI>(UIList.PausePopupUI);
+    }
+
 }

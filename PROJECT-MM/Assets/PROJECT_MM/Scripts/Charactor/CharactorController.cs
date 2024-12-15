@@ -18,21 +18,25 @@ public class CharactorController : MonoBehaviour
         // UIManager.Show<IngameUI>(UIList.IngameUI);
         UIManager.Show<LogUI>(UIList.LogUI);
 
-        MM.InputSystem.Singleton.OnEscapeInput += OnEscapeExecute;
+        // MM.InputSystem.Singleton.OnEscapeInput += OnEscapeExecute;
     }
 
-    private void OnDestroy()
-    {
-        MM.InputSystem.Singleton.OnEscapeInput -= OnEscapeExecute;
-    }
+    // private void OnDestroy()
+    // {
+    //     MM.InputSystem.Singleton.OnEscapeInput -= OnEscapeExecute;
+    // }
 
-    void OnEscapeExecute()
-    {
-        UIManager.Show<PausePopupUI>(UIList.PausePopupUI);
-    }
+    // void OnEscapeExecute()
+    // {
+    //     UIManager.Show<PausePopupUI>(UIList.PausePopupUI);
+    // }
 
     private void Update()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
 
         float mouseX = Input.GetAxis("Mouse X");
         float horizontal = Input.GetAxis("Horizontal");
