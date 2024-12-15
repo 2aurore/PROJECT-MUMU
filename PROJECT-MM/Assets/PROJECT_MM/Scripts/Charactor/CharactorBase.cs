@@ -282,21 +282,21 @@ public class CharactorBase : MonoBehaviour, IDamage
       LogUI.Instance.AddLogMessage("system", "Dead");
     }
 
-    if (prevHP <= 0)
+    // 체력이 0 보다 클때만 피격 모션 실행
+    if (currentHP > 0)
     {
-      return;
-    }
-    if (damage < 10)
-    {
-      animator.SetTrigger("Hit Trigger");
-      LogUI.Instance.AddLogMessage("system", "Hit");
+      if (damage < 10)
+      {
+        animator.SetTrigger("Hit Trigger");
+        LogUI.Instance.AddLogMessage("system", "Hit");
 
-    }
-    else
-    {
-      // 큰 데미지가 들어오는 경우 캐릭터를 넉백 시킴
-      animator.SetTrigger("Down Trigger");
-      LogUI.Instance.AddLogMessage("system", "Hit");
+      }
+      else
+      {
+        // 큰 데미지가 들어오는 경우 캐릭터를 넉백 시킴
+        animator.SetTrigger("Down Trigger");
+        LogUI.Instance.AddLogMessage("system", "Hit");
+      }
 
     }
   }
