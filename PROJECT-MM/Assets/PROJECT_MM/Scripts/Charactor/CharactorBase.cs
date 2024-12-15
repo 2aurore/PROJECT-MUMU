@@ -115,7 +115,6 @@ public class CharactorBase : MonoBehaviour, IDamage
     Vector3 movement = new Vector3(input.x, 0f, input.y);
     transform.Translate(movement * dynamicMoveSpeed * Time.deltaTime, Space.Self);
 
-    Debug.Log(input.x + ":" + input.y);
     // if (input.x != 0 || input.y != 0)
     // {
     //   string log = IsRunning ? "running..." : IsCrouching ? "crouch..." : "move...";
@@ -268,18 +267,6 @@ public class CharactorBase : MonoBehaviour, IDamage
       IsAttack = false;
     }
 
-    if (damage < 10)
-    {
-      // if (IsAttack) return;
-      animator.SetTrigger("Hit Trigger");
-    }
-    else
-    {
-      // if (IsAttack) return;
-      // 큰 데미지가 들어오는 경우 캐릭터를 넉백 시킴
-      animator.SetTrigger("Down Trigger");
-    }
-
     float prevHP = currentHP;
     currentHP -= damage;
     currentHP = Mathf.Clamp(currentHP, 0, maxHP);
@@ -287,13 +274,28 @@ public class CharactorBase : MonoBehaviour, IDamage
 
     // 체력이 0 아래로 떨어지고 현 상태가 IsAlive 일때만 동작하도록 함
     Debug.Log("currentHP:: " + currentHP);
+    Debug.Log("prevHP:: " + prevHP);
+
     if (currentHP <= 0f && prevHP > 0)
     {
       animator.SetTrigger("Dead Trigger");
       LogUI.Instance.AddLogMessage("system", "Dead");
     }
+
+    if (prevHP <= 0)
+    {
+      return;
+    }
+    if (damage < 10)
+    {
+      animator.SetTrigger("Hit Trigger");
+      LogUI.Instance.AddLogMessage("system", "Hit");
+
+    }
     else
     {
+      // 큰 데미지가 들어오는 경우 캐릭터를 넉백 시킴
+      animator.SetTrigger("Down Trigger");
       LogUI.Instance.AddLogMessage("system", "Hit");
 
     }
