@@ -280,6 +280,7 @@ public class CharactorBase : MonoBehaviour, IDamage
     {
       animator.SetTrigger("Dead Trigger");
       LogUI.Instance.AddLogMessage("system", "Dead");
+      StartCoroutine(SlowMotion());
     }
 
     // 체력이 0 보다 클때만 피격 모션 실행
@@ -299,5 +300,12 @@ public class CharactorBase : MonoBehaviour, IDamage
       }
 
     }
+  }
+
+  IEnumerator SlowMotion()
+  {
+    Time.timeScale = 0.5f;
+    yield return new WaitForSeconds(3.0f);
+    Time.timeScale = 1f;
   }
 }
