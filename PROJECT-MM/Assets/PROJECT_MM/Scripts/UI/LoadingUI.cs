@@ -9,6 +9,6 @@ public class LoadingUI : UIBase
 
     private void Update()
     {
-        loadingIcon.transform.Rotate(Vector3.forward * Mathf.Sin(Time.time));
+        // loadingIcon.transform.Rotate(Vector3.forward * Mathf.Sin(Time.time));
     }
 }
