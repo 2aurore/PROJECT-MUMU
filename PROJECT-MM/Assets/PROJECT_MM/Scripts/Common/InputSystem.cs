@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace MM
@@ -12,6 +13,9 @@ namespace MM
 
 
         public System.Action OnEscapeInput;
+        public System.Action OnTab;
+
+        public System.Action<float> OnScrollWheel;
 
         private void Start()
         {
@@ -34,6 +38,20 @@ namespace MM
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 OnEscapeInput?.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                OnTab?.Invoke();
+            }
+
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                OnScrollWheel?.Invoke(Input.mouseScrollDelta.y);
+            }
+            else if (Input.mouseScrollDelta.y < 0)
+            {
+                OnScrollWheel?.Invoke(Input.mouseScrollDelta.y);
             }
         }
 
