@@ -24,6 +24,8 @@ public class PausePopupUI : UIBase
     public void OnClickBackButton()
     {
         UIManager.Hide<PausePopupUI>(UIList.PausePopupUI);
+
+        Time.timeScale = 1f;
         Main.Instance.ChangeScene(SceneType.Title);
     }
 }
