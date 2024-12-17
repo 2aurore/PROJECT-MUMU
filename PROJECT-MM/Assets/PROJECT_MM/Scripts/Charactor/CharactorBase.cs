@@ -157,7 +157,7 @@ public class CharactorBase : MonoBehaviour, IDamage
     Collider[] overlapped = Physics.OverlapSphere(calculatePivotPosition, attackRadius);
     for (int i = 0; i < overlapped.Length; i++)
     {
-      Debug.Log($"Overlapped: {overlapped[i].name}");
+      // Debug.Log($"Overlapped: {overlapped[i].name}");
 
       if (overlapped[i].transform.root.TryGetComponent(out IDamage damageInterface))
       {
@@ -176,7 +176,7 @@ public class CharactorBase : MonoBehaviour, IDamage
     Collider[] overlapped = Physics.OverlapSphere(calculatePivotPosition, attackRadius);
     for (int i = 0; i < overlapped.Length; i++)
     {
-      Debug.Log($"Overlapped: {overlapped[i].name}");
+      // Debug.Log($"Overlapped: {overlapped[i].name}");
 
       if (overlapped[i].transform.root.TryGetComponent(out IDamage damageInterface))
       {

@@ -11,6 +11,8 @@ namespace MM
         private bool isCommonCursorVisible = false;
 
         public System.Action OnEscapeInput;
+        public System.Action OnTab;
+        public System.Action<float> OnScrollWheel;
 
         private void Start()
         {
@@ -18,7 +20,7 @@ namespace MM
         }
 
         private void Update()
-        {   
+        {
             // 인게임 마우스 숨김 부분 
             // IsForceCursorVisible = Input.GetKey(KeyCode.LeftAlt);
             // if (IsForceCursorVisible)
@@ -35,6 +37,21 @@ namespace MM
             {
                 OnEscapeInput?.Invoke();
             }
+            if (Input.GetKeyUp(KeyCode.Tab))
+            {
+                OnTab?.Invoke();
+            }
+
+            // Debug.Log("mouseScrollDelta Y : " + Input.mouseScrollDelta.y);
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                OnScrollWheel?.Invoke(Input.mouseScrollDelta.y);
+            }
+            else if (Input.mouseScrollDelta.y < 0)
+            {
+                OnScrollWheel?.Invoke(Input.mouseScrollDelta.y);
+            }
+
         }
 
         public void SetCursorVisible(bool isVisible)
